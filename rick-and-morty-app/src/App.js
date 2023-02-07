@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Card from './components/Cards/Card.jsx';
+import Card from './components/Card/Card.jsx';
 import Search from './components/Search/Search.jsx';
 import './App.css';
 
@@ -17,7 +17,7 @@ function App() {
   if (search === '') {
     APIURL = `https://rickandmortyapi.com/api/character/${charactersShown}`
   } else {
-    APIURL = `https://rickandmortyapi.com/api/character/?name=${search}`
+    APIURL = `https://rickandmortyapi.com/api/character/?page=${currentPage}&name=${search}`
   }
 
 useEffect(() => {
@@ -26,12 +26,10 @@ useEffect(() => {
       const response = await fetch(APIURL)
       const data = await response.json()
       setCharacters(data)
-      console.log(data)
     } else {
       const response = await fetch(APIURL)
       const data = await response.json()
       setCharacters(data.results)
-      console.log(data.results)
     }
   };
   requiredItems()
@@ -44,15 +42,23 @@ useEffect(() => {
   };
 
   const handlePageChangerPlusOne = (page) => {
-    setCurrentPage(page);
-    const characterSelector = currentCharactersShown.map(x => x+(12))
-    setCurrentCharactersShown(characterSelector)
+    if (search === '') {
+      setCurrentPage(page);
+      const characterSelector = currentCharactersShown.map(x => x+(12))
+      setCurrentCharactersShown(characterSelector)
+    } else {
+      setCurrentPage(page);
+    }
   };
 
   const handlePageChangerMinusOne = (page) => {
-    setCurrentPage(page);
-    const characterSelector = currentCharactersShown.map(x => x-(12))
-    setCurrentCharactersShown(characterSelector)
+    if (search === '') {
+      setCurrentPage(page);
+      const characterSelector = currentCharactersShown.map(x => x-(12))
+      setCurrentCharactersShown(characterSelector)
+    } else {
+      setCurrentPage(page);
+    }
   };
 
   return (
@@ -73,7 +79,6 @@ useEffect(() => {
               Previous
             </button>
             <button className='page-buttons'
-              disabled={characters.length < 12}
               onClick={() => handlePageChangerPlusOne(currentPage + 1)}
             >
               Next
