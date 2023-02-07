@@ -14,6 +14,8 @@ function App() {
 
   let APIURL
 
+  const firstPage = 1
+
   if (search === '') {
     APIURL = `https://rickandmortyapi.com/api/character/${charactersShown}`
   } else {
@@ -35,10 +37,12 @@ useEffect(() => {
   requiredItems()
   }, [currentPage])
 
-  const handlePageUpdater = (page) => {
-    setCurrentPage(page);
+  const handlePageUpdater = () => {
+    setCurrentPage(currentPage+1);
+    setCurrentPage(currentPage-1);
     const characterSelector = currentCharactersShown.map(x => x)
     setCurrentCharactersShown(characterSelector)
+    console.log(currentPage)
   };
 
   const handlePageChangerPlusOne = (page) => {
