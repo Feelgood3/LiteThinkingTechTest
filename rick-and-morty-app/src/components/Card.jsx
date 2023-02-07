@@ -18,6 +18,9 @@ function Card( {characters} ) {
             <p className='card-container-character-description'><strong>Gender: </strong>{character.gender}</p>
             <p className='card-container-character-description'><strong>Specie: </strong>{character.species}</p>
           </div>
+          <div className="card-container-id">
+            <p className='card-container-character-id'><strong>#: </strong>{character.id}</p>
+          </div>
         </div>
       )})
   } else {

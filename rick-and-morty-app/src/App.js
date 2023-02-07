@@ -42,23 +42,21 @@ useEffect(() => {
         <div className="filter">Search bar goes here</div>
         <div className='main-container-cards'>
           <Card characters={characters} />
-
-          <div>
-            <button
+        </div>
+        <div className='main-container-buttons'>
+            <button className='page-buttons'
               disabled={currentPage === 1}
               onClick={() => handlePageChangerMinusOne(currentPage - 1)}
             >
               Previous
             </button>
-            <button
+            <button className='page-buttons'
               disabled={characters.length < 12}
               onClick={() => handlePageChangerPlusOne(currentPage + 1)}
             >
               Next
             </button> 
           </div>
-            
-        </div>
       </div>
     </div>
   );

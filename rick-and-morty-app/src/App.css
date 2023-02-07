@@ -10,6 +10,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-rows: 240px;
+  gap: 4px 2px;
 }
 
 .card-container {
@@ -21,6 +22,24 @@
   border-radius: 12px;
   border: 1.5px solid black;
   color: black;
+  justify-self: center;
+}
+.card-container-id{
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid black;
+  top: -214px;
+  right: -152px;
+  width: 46px;
+  height: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-container-character-id {
+  font-size: 13px;
 }
 
 .filter {
@@ -44,4 +63,21 @@
   margin: 0;
   font-size: 12px;
   margin: 2px 8px;
+}
+
+.main-container-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.page-buttons {
+  background-color: #1a6e1d;
+  border: none;
+  color: white;
+  padding: 14px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
 }
