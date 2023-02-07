@@ -1,22 +1,37 @@
 import React, { useState, useEffect } from 'react';
+import Card from './components/Card';
 import './App.css';
 
 function App() {
 
-  let APIURL = `https://rickandmortyapi.com/api/character/?page=1`
-
+  const [currentPage, setCurrentPage] = useState(1)
+  const [currentCharactersShown, setCurrentCharactersShown] = useState([1,2,3,4,5,6,7,8,9,10,11,12])
   const [characters, setCharacters] = useState([])
 
+  let charactersShown = currentCharactersShown.join(",")
+  let APIURL = `https://rickandmortyapi.com/api/character/${charactersShown}`
+
+
+useEffect(() => {
   const requiredItems = async() => {
     const response = await fetch(APIURL)
     const data = await response.json()
-    setCharacters(data.results)
-    console.log(data.results)
-}
+    setCharacters(data)
+  };
+  requiredItems()
+  }, [currentPage])
 
-useEffect(() => {
-    requiredItems()
-}, [])
+  const handlePageChangerPlusOne = (page) => {
+    setCurrentPage(page);
+    const characterSelector = currentCharactersShown.map(x => x+(12))
+    setCurrentCharactersShown(characterSelector)
+  };
+
+  const handlePageChangerMinusOne = (page) => {
+    setCurrentPage(page);
+    const characterSelector = currentCharactersShown.map(x => x-(12))
+    setCurrentCharactersShown(characterSelector)
+  };
 
   return (
     <div className="App">
@@ -26,18 +41,23 @@ useEffect(() => {
         </div>
         <div className="filter">Search bar goes here</div>
         <div className='main-container-cards'>
-          <div className="card-container">test</div>
-          <div className="card-container">test2</div>
-          <div className="card-container">test3</div>
-          <div className="card-container">test4</div>
-          <div className="card-container">test5</div>
-          <div className="card-container">test5</div>
-          <div className="card-container">test5</div>
-          <div className="card-container">test5</div>
-          <div className="card-container">test5</div>
-          <div className="card-container">test5</div>
-          <div className="card-container">test5</div>
-          <div className="card-container">test5</div>
+          <Card characters={characters} />
+
+          <div>
+            <button
+              disabled={currentPage === 1}
+              onClick={() => handlePageChangerMinusOne(currentPage - 1)}
+            >
+              Previous
+            </button>
+            <button
+              disabled={characters.length < 12}
+              onClick={() => handlePageChangerPlusOne(currentPage + 1)}
+            >
+              Next
+            </button> 
+          </div>
+            
         </div>
       </div>
     </div>
