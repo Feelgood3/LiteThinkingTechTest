@@ -4,6 +4,9 @@
   align-items: center;
   gap: 4px;
 }
+.title {
+  margin: 10px 0px;
+}
 
 .main-container-cards {
   width: 85%;
@@ -43,6 +46,7 @@
 }
 
 .filter {
+  display: flex;
   margin-bottom: 20px;
 }
 
@@ -68,16 +72,41 @@
 .main-container-buttons {
   display: flex;
   gap: 12px;
-  margin-top: 4px;
+  margin-top: 10px;
 }
 
 .page-buttons {
   background-color: #1a6e1d;
   border: none;
+  border-radius: 8px;
   color: white;
   padding: 14px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.search-button {
+  background-color: #1a6e1d;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 14px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  }
+.search-form-input {
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid #1a6e1d;
+  padding: 10px 15px;
 }
